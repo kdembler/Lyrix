@@ -44,10 +44,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func fetch() {
+        // TODO: make fetch async
         var v = ""
         do {
             let (artist, track) = try SpotifyApi.getArtistAndTitle()
             v = "\(track) by \(artist)"
+            // TODO: figure out a way for finding genius lyrics
         } catch {
             v = "Fetch error"
         }
@@ -71,6 +73,7 @@ struct SpotifyApi {
         let script = NSAppleScript(source: "\(prefix) \(query)")
         var err : NSDictionary?
         let result = script?.executeAndReturnError(&err)
+        // TODO: check errors
         if let output = result?.stringValue {
             return output
         }
