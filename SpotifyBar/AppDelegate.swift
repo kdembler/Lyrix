@@ -66,6 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let task = URLSession.shared.dataTask(with: request) {
             (data, response, error) in
             if error == nil, let result = data {
+                // parse JSON response
                 guard let json = try? JSONSerialization.jsonObject(with: result, options: []) else { return }
                 if let dict = json as? [String: Any] {
                     if let resp = dict["response"] as? [String: Any] {
@@ -129,7 +130,6 @@ struct SpotifyApi {
         let script = NSAppleScript(source: "\(prefix) \(query)")
         var err : NSDictionary?
         let result = script?.executeAndReturnError(&err)
-        // TODO: check errors
         if let output = result?.stringValue {
             return output
         }
