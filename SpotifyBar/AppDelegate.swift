@@ -91,20 +91,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func fetch() {
-        // TODO: make fetch async
-        var v = ""
-        do {
-            (artist, track) = try SpotifyApi.getArtistAndTitle()
-            artist = removeFeat(artist)
-            track = removeFeat(track)
-            v = "\(track) by \(artist)"
-            trackInfoMenuItem.action = #selector(getLyrics)
-        } catch {
-            v = "Fetch error"
-            trackInfoMenuItem.action = nil
+        DispatchQueue.main.async {
+            var v = ""
+            do {
+                (self.artist, self.track) = try SpotifyApi.getArtistAndTitle()
+                self.artist = self.removeFeat(self.artist)
+                self.track = self.removeFeat(self.track)
+                v = "\(self.track) by \(self.artist)"
+                self.trackInfoMenuItem.action = #selector(self.getLyrics)
+            } catch {
+                v = "Fetch error"
+                self.trackInfoMenuItem.action = nil
+            }
+            Swift.print(v)
+            self.trackInfoMenuItem.title = v
         }
-        Swift.print(v)
-        trackInfoMenuItem.title = v
     }
 }
 
