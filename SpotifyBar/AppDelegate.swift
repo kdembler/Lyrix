@@ -25,9 +25,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             bearerToken = defaultToken
         }
         statusBarItem = NSStatusBar.system.statusItem(withLength: -1)
-        statusBarItem.menu = menu
-        statusBarItem.title = "SpotifyBar"
+        statusBarItem.image = #imageLiteral(resourceName: "Icon")
         statusBarItem.highlightMode = true
+        statusBarItem.menu = menu
         
         trackInfoMenuItem.title = "SpotifyBar"
         menu.addItem(trackInfoMenuItem)
