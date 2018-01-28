@@ -17,9 +17,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timer: Timer = Timer()
     var artist = ""
     var track = ""
-    let bearerToken = "YOUR TOKEN HERE"
+    var bearerToken = "YOUR TOKEN HERE"
+    let defaults = UserDefaults.standard
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        if let defaultToken = defaults.string(forKey: "bearerToken") {
+            bearerToken = defaultToken
+        }
         statusBarItem = NSStatusBar.system.statusItem(withLength: -1)
         statusBarItem.menu = menu
         statusBarItem.title = "SpotifyBar"
