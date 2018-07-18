@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,10 +18,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timer: Timer = Timer()
     var artist = ""
     var track = ""
-    var bearerToken = "YOUR TOKEN HERE"
+    var bearerToken = "8W9Uq9vyoFPNTiIL3djSBxhrcSdO9J2oWRiuhqynWcr44W3Dy1i3q8DqcPFR34zd"
     let defaults = UserDefaults.standard
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let appBundleIdentifier = "com.kdembler.SpotifyBarHelper"
+        let autoLaunch = true
+        if SMLoginItemSetEnabled(appBundleIdentifier as CFString, autoLaunch) {
+            NSLog("Successfully add login item.")
+        } else {
+            NSLog("Failed to add login item.")
+        }
         if let defaultToken = defaults.string(forKey: "bearerToken") {
             bearerToken = defaultToken
         }

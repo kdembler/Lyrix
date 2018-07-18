@@ -10,7 +10,25 @@
 		F38A0069201BDC7A00DBFFDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A0068201BDC7A00DBFFDC /* AppDelegate.swift */; };
 		F38A006B201BDC7A00DBFFDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38A006A201BDC7A00DBFFDC /* Assets.xcassets */; };
 		F38A006E201BDC7A00DBFFDC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F38A006C201BDC7A00DBFFDC /* MainMenu.xib */; };
+		F3B41C3C20FF786700BCE188 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B41C3B20FF786700BCE188 /* AppDelegate.m */; };
+		F3B41C3E20FF786800BCE188 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B41C3D20FF786800BCE188 /* Assets.xcassets */; };
+		F3B41C4120FF786800BCE188 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3B41C3F20FF786800BCE188 /* MainMenu.xib */; };
+		F3B41C4420FF786800BCE188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B41C4320FF786800BCE188 /* main.m */; };
+		F3B41C4A20FF79A400BCE188 /* SpotifyBarHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3B41C3820FF786700BCE188 /* SpotifyBarHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F3B41C4920FF796F00BCE188 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				F3B41C4A20FF79A400BCE188 /* SpotifyBarHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F38A0065201BDC7A00DBFFDC /* SpotifyBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,10 +37,25 @@
 		F38A006D201BDC7A00DBFFDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F38A006F201BDC7A00DBFFDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F38A0070201BDC7A00DBFFDC /* SpotifyBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotifyBar.entitlements; sourceTree = "<group>"; };
+		F3B41C3820FF786700BCE188 /* SpotifyBarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyBarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3B41C3A20FF786700BCE188 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F3B41C3B20FF786700BCE188 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F3B41C3D20FF786800BCE188 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3B41C4020FF786800BCE188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F3B41C4220FF786800BCE188 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B41C4320FF786800BCE188 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F3B41C4520FF786800BCE188 /* SpotifyBarHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotifyBarHelper.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F38A0062201BDC7A00DBFFDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B41C3520FF786700BCE188 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				F38A0067201BDC7A00DBFFDC /* SpotifyBar */,
+				F3B41C3920FF786700BCE188 /* SpotifyBarHelper */,
 				F38A0066201BDC7A00DBFFDC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				F38A0065201BDC7A00DBFFDC /* SpotifyBar.app */,
+				F3B41C3820FF786700BCE188 /* SpotifyBarHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +95,20 @@
 			path = SpotifyBar;
 			sourceTree = "<group>";
 		};
+		F3B41C3920FF786700BCE188 /* SpotifyBarHelper */ = {
+			isa = PBXGroup;
+			children = (
+				F3B41C3A20FF786700BCE188 /* AppDelegate.h */,
+				F3B41C3B20FF786700BCE188 /* AppDelegate.m */,
+				F3B41C3D20FF786800BCE188 /* Assets.xcassets */,
+				F3B41C3F20FF786800BCE188 /* MainMenu.xib */,
+				F3B41C4220FF786800BCE188 /* Info.plist */,
+				F3B41C4320FF786800BCE188 /* main.m */,
+				F3B41C4520FF786800BCE188 /* SpotifyBarHelper.entitlements */,
+			);
+			path = SpotifyBarHelper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -70,6 +119,7 @@
 				F38A0061201BDC7A00DBFFDC /* Sources */,
 				F38A0062201BDC7A00DBFFDC /* Frameworks */,
 				F38A0063201BDC7A00DBFFDC /* Resources */,
+				F3B41C4920FF796F00BCE188 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -80,6 +130,23 @@
 			productReference = F38A0065201BDC7A00DBFFDC /* SpotifyBar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F3B41C3720FF786700BCE188 /* SpotifyBarHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B41C4820FF786800BCE188 /* Build configuration list for PBXNativeTarget "SpotifyBarHelper" */;
+			buildPhases = (
+				F3B41C3420FF786700BCE188 /* Sources */,
+				F3B41C3520FF786700BCE188 /* Frameworks */,
+				F3B41C3620FF786700BCE188 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpotifyBarHelper;
+			productName = SpotifyBarHelper;
+			productReference = F3B41C3820FF786700BCE188 /* SpotifyBarHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -87,11 +154,15 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Klaudiusz Dembler";
 				TargetAttributes = {
 					F38A0064201BDC7A00DBFFDC = {
 						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F3B41C3720FF786700BCE188 = {
+						CreatedOnToolsVersion = 9.4.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -110,6 +181,7 @@
 			projectRoot = "";
 			targets = (
 				F38A0064201BDC7A00DBFFDC /* SpotifyBar */,
+				F3B41C3720FF786700BCE188 /* SpotifyBarHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -124,6 +196,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F3B41C3620FF786700BCE188 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B41C3E20FF786800BCE188 /* Assets.xcassets in Resources */,
+				F3B41C4120FF786800BCE188 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -135,6 +216,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F3B41C3420FF786700BCE188 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B41C4420FF786800BCE188 /* main.m in Sources */,
+				F3B41C3C20FF786700BCE188 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -142,6 +232,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				F38A006D201BDC7A00DBFFDC /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F3B41C3F20FF786800BCE188 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3B41C4020FF786800BCE188 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -163,6 +261,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -170,6 +269,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -220,6 +320,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -227,6 +328,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -260,12 +362,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotifyBar/SpotifyBar.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = G249UWGEHE;
 				INFOPLIST_FILE = SpotifyBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kdembler.SpotifyBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -275,13 +381,57 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotifyBar/SpotifyBar.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = G249UWGEHE;
 				INFOPLIST_FILE = SpotifyBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kdembler.SpotifyBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		F3B41C4620FF786800BCE188 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = SpotifyBarHelper/SpotifyBarHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = G249UWGEHE;
+				INFOPLIST_FILE = SpotifyBarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kdembler.SpotifyBarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F3B41C4720FF786800BCE188 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = SpotifyBarHelper/SpotifyBarHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = G249UWGEHE;
+				INFOPLIST_FILE = SpotifyBarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kdembler.SpotifyBarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -302,6 +452,15 @@
 			buildConfigurations = (
 				F38A0074201BDC7A00DBFFDC /* Debug */,
 				F38A0075201BDC7A00DBFFDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3B41C4820FF786800BCE188 /* Build configuration list for PBXNativeTarget "SpotifyBarHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3B41C4620FF786800BCE188 /* Debug */,
+				F3B41C4720FF786800BCE188 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
