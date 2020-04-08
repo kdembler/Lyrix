@@ -11,7 +11,7 @@
 		C79488E65282AB8F6DD3DD10 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7948E86C33E1D157815EA20 /* Constants.swift */; };
 		C7948A6D7C557F89B9B352E6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C794831F33D04760B5B8EC97 /* Store.swift */; };
 		C7948D6C8C24473145D3CC49 /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C794870EA9BBC9987110B916 /* SpotifyApi.swift */; };
-		C7948EEA7A46CA9E9354C5B8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C794848B87B98D15DBF57FA6 /* Utils.swift */; };
+		C7948D8A61210C3C442A7A6C /* GeniusApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7948F7AC964F910034F2D2E /* GeniusApi.swift */; };
 		F308DEB42433A10100D1A06C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F308DEB32433A10100D1A06C /* Podfile */; };
 		F31C43DA2437D1CD0005C027 /* Pods_Lyrix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */; };
 		F387477D2437BA1800DDE263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F387477C2437BA1800DDE263 /* Main.storyboard */; };
@@ -24,10 +24,10 @@
 /* Begin PBXFileReference section */
 		8299417EA31A7E6BC69ECACF /* Pods-Lyrix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrix.release.xcconfig"; path = "Target Support Files/Pods-Lyrix/Pods-Lyrix.release.xcconfig"; sourceTree = "<group>"; };
 		C794831F33D04760B5B8EC97 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		C794848B87B98D15DBF57FA6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C79484E2CF71AE342BFB60FA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		C794870EA9BBC9987110B916 /* SpotifyApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyApi.swift; sourceTree = "<group>"; };
 		C7948E86C33E1D157815EA20 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C7948F7AC964F910034F2D2E /* GeniusApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusApi.swift; sourceTree = "<group>"; };
 		D59473CE8E4F2DE5C2F4F219 /* Pods-Lyrix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrix.debug.xcconfig"; path = "Target Support Files/Pods-Lyrix/Pods-Lyrix.debug.xcconfig"; sourceTree = "<group>"; };
 		ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lyrix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F308DEB32433A10100D1A06C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -93,10 +93,10 @@
 				F3FFC2CB23A6E0A300B2E332 /* Lyrix.entitlements */,
 				F3FFC2C423A6E0A300B2E332 /* Preview Content */,
 				C794870EA9BBC9987110B916 /* SpotifyApi.swift */,
-				C794848B87B98D15DBF57FA6 /* Utils.swift */,
 				C7948E86C33E1D157815EA20 /* Constants.swift */,
 				F3F9C7C724377607004A6EFE /* PreferencesView.swift */,
 				C794831F33D04760B5B8EC97 /* Store.swift */,
+				C7948F7AC964F910034F2D2E /* GeniusApi.swift */,
 			);
 			path = Lyrix;
 			sourceTree = "<group>";
@@ -237,10 +237,10 @@
 			files = (
 				F3FFC2BF23A6E0A200B2E332 /* AppDelegate.swift in Sources */,
 				C7948D6C8C24473145D3CC49 /* SpotifyApi.swift in Sources */,
-				C7948EEA7A46CA9E9354C5B8 /* Utils.swift in Sources */,
 				C79488E65282AB8F6DD3DD10 /* Constants.swift in Sources */,
 				F3F9C7C824377607004A6EFE /* PreferencesView.swift in Sources */,
 				C7948A6D7C557F89B9B352E6 /* Store.swift in Sources */,
+				C7948D8A61210C3C442A7A6C /* GeniusApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lyrix/Lyrix.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Lyrix/Preview Content\"";
@@ -392,7 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lyrix/Lyrix.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Lyrix/Preview Content\"";

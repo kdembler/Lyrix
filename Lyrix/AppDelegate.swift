@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var preferencesWindow: NSWindow?
     var trackUpdateTimer: Timer?
+    var track: TrackInfo?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleURLCallback(event:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
@@ -72,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         if isAuthenticated {
             actionItem.title = "Get track"
-//            actionItem.action = #selector(updateTrackInfo)
+            actionItem.action = #selector(openSongLyrics)
         } else if Store.shared.spotifyApiDetailsSet {
             actionItem.title = "Login"
             actionItem.action = #selector(loginToSpotify)
@@ -139,6 +140,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 case .success(let track):
                     let status = "\(track.name) by \(track.artists.joined(separator: ", "))"
                     self.actionItem.title = status
+                    self.track = track
                 case .failure(let reason):
                     switch reason {
                     case .noPlayerAvailable:
@@ -148,6 +150,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         print("Getting track info failed")
                     }
                 }
+            }
+        }
+    }
+
+    @objc func openSongLyrics() {
+        GeniusApi.getLyricsLink(track: track!) {result in
+            switch result {
+            case .success(let songUrlString):
+                print("Got URL")
+                print(songUrlString)
+                let songUrl = URL(string: songUrlString)!
+                NSWorkspace.shared.open(songUrl)
+            case .failure:
+                print("failed")
             }
         }
     }
