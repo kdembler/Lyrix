@@ -14,12 +14,30 @@
 		C7948D8A61210C3C442A7A6C /* GeniusApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7948F7AC964F910034F2D2E /* GeniusApi.swift */; };
 		F308DEB42433A10100D1A06C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F308DEB32433A10100D1A06C /* Podfile */; };
 		F31C43DA2437D1CD0005C027 /* Pods_Lyrix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */; };
+		F35FEC20243F935500E7A6D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35FEC1F243F935500E7A6D8 /* AppDelegate.swift */; };
+		F35FEC2A243F935600E7A6D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35FEC28243F935600E7A6D8 /* Main.storyboard */; };
+		F35FEC31243F946A00E7A6D8 /* LyrixLauncher.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = F35FEC1D243F935500E7A6D8 /* LyrixLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F35FEC33243F948A00E7A6D8 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35FEC32243F948A00E7A6D8 /* ServiceManagement.framework */; };
+		F35FEC35243F97A000E7A6D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35FEC34243F97A000E7A6D8 /* Constants.swift */; };
 		F387477D2437BA1800DDE263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F387477C2437BA1800DDE263 /* Main.storyboard */; };
 		F3F9C7C824377607004A6EFE /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9C7C724377607004A6EFE /* PreferencesView.swift */; };
 		F3FFC2BF23A6E0A200B2E332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FFC2BE23A6E0A200B2E332 /* AppDelegate.swift */; };
 		F3FFC2C323A6E0A300B2E332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3FFC2C223A6E0A300B2E332 /* Assets.xcassets */; };
 		F3FFC2C623A6E0A300B2E332 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3FFC2C523A6E0A300B2E332 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F35FEC30243F945000E7A6D8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				F35FEC31243F946A00E7A6D8 /* LyrixLauncher.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8299417EA31A7E6BC69ECACF /* Pods-Lyrix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrix.release.xcconfig"; path = "Target Support Files/Pods-Lyrix/Pods-Lyrix.release.xcconfig"; sourceTree = "<group>"; };
@@ -31,6 +49,13 @@
 		D59473CE8E4F2DE5C2F4F219 /* Pods-Lyrix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrix.debug.xcconfig"; path = "Target Support Files/Pods-Lyrix/Pods-Lyrix.debug.xcconfig"; sourceTree = "<group>"; };
 		ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lyrix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F308DEB32433A10100D1A06C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F35FEC1D243F935500E7A6D8 /* LyrixLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyrixLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F35FEC1F243F935500E7A6D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F35FEC29243F935600E7A6D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F35FEC2B243F935600E7A6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F35FEC2C243F935600E7A6D8 /* LyrixLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyrixLauncher.entitlements; sourceTree = "<group>"; };
+		F35FEC32243F948A00E7A6D8 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		F35FEC34243F97A000E7A6D8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F387477C2437BA1800DDE263 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F3F9C7C724377607004A6EFE /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		F3FFC2BB23A6E0A200B2E332 /* Lyrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,11 +68,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F35FEC1A243F935500E7A6D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3FFC2B823A6E0A200B2E332 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F31C43DA2437D1CD0005C027 /* Pods_Lyrix.framework in Frameworks */,
+				F35FEC33243F948A00E7A6D8 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,9 +90,22 @@
 		12495CD36829DCA48BF65354 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F35FEC32243F948A00E7A6D8 /* ServiceManagement.framework */,
 				ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F35FEC1E243F935500E7A6D8 /* LyrixLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				F35FEC1F243F935500E7A6D8 /* AppDelegate.swift */,
+				F35FEC28243F935600E7A6D8 /* Main.storyboard */,
+				F35FEC2B243F935600E7A6D8 /* Info.plist */,
+				F35FEC2C243F935600E7A6D8 /* LyrixLauncher.entitlements */,
+				F35FEC34243F97A000E7A6D8 /* Constants.swift */,
+			);
+			path = LyrixLauncher;
 			sourceTree = "<group>";
 		};
 		F3FFC2B223A6E0A200B2E332 = {
@@ -68,6 +114,7 @@
 				F308DEB32433A10100D1A06C /* Podfile */,
 				F3FFC2D323A6E43600B2E332 /* README.md */,
 				F3FFC2BD23A6E0A200B2E332 /* Lyrix */,
+				F35FEC1E243F935500E7A6D8 /* LyrixLauncher */,
 				F3FFC2BC23A6E0A200B2E332 /* Products */,
 				F4B9E8677AB4E7388A461E40 /* Pods */,
 				12495CD36829DCA48BF65354 /* Frameworks */,
@@ -79,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				F3FFC2BB23A6E0A200B2E332 /* Lyrix.app */,
+				F35FEC1D243F935500E7A6D8 /* LyrixLauncher.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +169,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F35FEC1C243F935500E7A6D8 /* LyrixLauncher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F35FEC2F243F935600E7A6D8 /* Build configuration list for PBXNativeTarget "LyrixLauncher" */;
+			buildPhases = (
+				F35FEC19243F935500E7A6D8 /* Sources */,
+				F35FEC1A243F935500E7A6D8 /* Frameworks */,
+				F35FEC1B243F935500E7A6D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LyrixLauncher;
+			productName = LyrixLauncher;
+			productReference = F35FEC1D243F935500E7A6D8 /* LyrixLauncher.app */;
+			productType = "com.apple.product-type.application";
+		};
 		F3FFC2BA23A6E0A200B2E332 /* Lyrix */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3FFC2CE23A6E0A300B2E332 /* Build configuration list for PBXNativeTarget "Lyrix" */;
@@ -130,6 +195,7 @@
 				F3FFC2B823A6E0A200B2E332 /* Frameworks */,
 				F3FFC2B923A6E0A200B2E332 /* Resources */,
 				20D0E6DF7138AB50EBC8FE1E /* [CP] Embed Pods Frameworks */,
+				F35FEC30243F945000E7A6D8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -146,10 +212,13 @@
 		F3FFC2B323A6E0A200B2E332 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Klaudiusz Dembler";
 				TargetAttributes = {
+					F35FEC1C243F935500E7A6D8 = {
+						CreatedOnToolsVersion = 11.4;
+					};
 					F3FFC2BA23A6E0A200B2E332 = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -169,11 +238,20 @@
 			projectRoot = "";
 			targets = (
 				F3FFC2BA23A6E0A200B2E332 /* Lyrix */,
+				F35FEC1C243F935500E7A6D8 /* LyrixLauncher */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F35FEC1B243F935500E7A6D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F35FEC2A243F935600E7A6D8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3FFC2B923A6E0A200B2E332 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,6 +309,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F35FEC19243F935500E7A6D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F35FEC20243F935500E7A6D8 /* AppDelegate.swift in Sources */,
+				F35FEC35243F97A000E7A6D8 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3FFC2B723A6E0A200B2E332 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,7 +333,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		F35FEC28243F935600E7A6D8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F35FEC29243F935600E7A6D8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		F35FEC2D243F935600E7A6D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LyrixLauncher/LyrixLauncher.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = G249UWGEHE;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LyrixLauncher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kdembler.LyrixLauncher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F35FEC2E243F935600E7A6D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LyrixLauncher/LyrixLauncher.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = G249UWGEHE;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LyrixLauncher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kdembler.LyrixLauncher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		F3FFC2CC23A6E0A300B2E332 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -380,7 +522,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.kdembler.lyrix;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kdembler.Lyrix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -406,7 +548,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.kdembler.lyrix;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kdembler.Lyrix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -415,6 +557,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F35FEC2F243F935600E7A6D8 /* Build configuration list for PBXNativeTarget "LyrixLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F35FEC2D243F935600E7A6D8 /* Debug */,
+				F35FEC2E243F935600E7A6D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F3FFC2B623A6E0A200B2E332 /* Build configuration list for PBXProject "Lyrix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

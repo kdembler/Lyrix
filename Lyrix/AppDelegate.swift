@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleURLCallback(event:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
         NotificationCenter.default.addObserver(self, selector: #selector(handlePreferencesSaved), name: preferencesSavedNotification, object: nil)
+        killLauncherApp()
 
         if Store.shared.spotifyApiDetailsSet {
             spotifyApi = SpotifyApi()
@@ -38,6 +39,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         button.image = NSImage(named: "MenuBarIcon")
 
         refreshMenu()
+    }
+
+    func killLauncherApp() {
+        let runningApps = NSWorkspace.shared.runningApplications
+        let launcherRunning = !runningApps.filter {
+            $0.bundleIdentifier == launcherIdentifier
+        }.isEmpty
+
+        if launcherRunning {
+            DistributedNotificationCenter.default().post(name: killLauncherNotification, object: appIdentifier)
+        }
     }
 
     func startTrackUpdateTimer() {
@@ -155,7 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func openSongLyrics() {
-        GeniusApi.getLyricsLink(track: track!) {result in
+        GeniusApi.getLyricsLink(track: track!) { result in
             switch result {
             case .success(let songUrlString):
                 print("Got URL")

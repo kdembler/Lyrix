@@ -1,4 +1,5 @@
 import KeychainAccess
+import ServiceManagement
 
 let spotifyAccessTokenKeychainId = "spotify_access_token"
 let spotifyRefreshTokenKeychainId = "spotify_refresh_token"
@@ -12,6 +13,7 @@ class Store {
     private var _spotifyRefreshToken: String?
     private var _spotifyApiClient: String?
     private var _spotifyApiSecret: String?
+    private var _startupEnabled: Bool = false
     private var keychain: Keychain;
 
     var spotifyAccessToken: String? {
@@ -50,6 +52,15 @@ class Store {
             keychain[spotifyApiSecretKeychainId] = newValue
         }
     }
+    var startupEnabled: Bool {
+        get {
+            _startupEnabled
+        }
+        set {
+            _startupEnabled = newValue
+            SMLoginItemSetEnabled(launcherIdentifier as CFString, newValue)
+        }
+    }
 
     var spotifyApiDetailsSet: Bool {
         get {
@@ -67,5 +78,16 @@ class Store {
         _spotifyRefreshToken = keychain[spotifyRefreshTokenKeychainId]
         _spotifyApiClient = keychain[spotifyApiClientKeychainId]
         _spotifyApiSecret = keychain[spotifyApiSecretKeychainId]
+        _startupEnabled = readStartupStatus()
+    }
+
+    private func readStartupStatus() -> Bool {
+        guard let jobs = (SMCopyAllJobDictionaries(kSMDomainUserLaunchd).takeRetainedValue() as? [[String: AnyObject]]) else {
+            return false
+        }
+
+        let job = jobs.first { $0["Label"] as! String == launcherIdentifier }
+
+        return job?["OnDemand"] as? Bool ?? false
     }
 }
