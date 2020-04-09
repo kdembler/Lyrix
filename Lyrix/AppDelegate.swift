@@ -84,8 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let isAuthenticated = spotifyApi?.isAuthenticated ?? false
 
         if isAuthenticated {
-            actionItem.title = "Get track"
-            actionItem.action = #selector(openSongLyrics)
+            actionItem.title = "Fetching..."
         } else if Store.shared.spotifyApiDetailsSet {
             actionItem.title = "Login"
             actionItem.action = #selector(loginToSpotify)
@@ -152,6 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 case .success(let track):
                     let status = "\(track.name) by \(track.artists.joined(separator: ", "))"
                     self.actionItem.title = status
+                    self.actionItem.action = #selector(self.openSongLyrics)
                     self.track = track
                 case .failure(let reason):
                     switch reason {
@@ -161,6 +161,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         self.actionItem.title = "Error"
                         print("Getting track info failed")
                     }
+                    self.actionItem.action = nil
                 }
             }
         }
