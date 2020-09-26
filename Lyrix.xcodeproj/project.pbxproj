@@ -3,20 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C79480AA5CE5834E9D987930 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = C794824EDB2E94B13F68F694 /* Cartfile */; };
 		C7948343AC8D1930AB603C9F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C79484E2CF71AE342BFB60FA /* .gitignore */; };
 		C79488E65282AB8F6DD3DD10 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7948E86C33E1D157815EA20 /* Constants.swift */; };
 		C7948A6D7C557F89B9B352E6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C794831F33D04760B5B8EC97 /* Store.swift */; };
+		C7948CDB1290A313CD2FB7CF /* SpotifyAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79484158F2922563E94B831 /* SpotifyAuth.swift */; };
 		C7948D6C8C24473145D3CC49 /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C794870EA9BBC9987110B916 /* SpotifyApi.swift */; };
 		C7948D8A61210C3C442A7A6C /* GeniusApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7948F7AC964F910034F2D2E /* GeniusApi.swift */; };
-		F308DEB42433A10100D1A06C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F308DEB32433A10100D1A06C /* Podfile */; };
-		F31C43DA2437D1CD0005C027 /* Pods_Lyrix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */; };
+		F338A27A251A92A9001C4AC4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F338A279251A92A9001C4AC4 /* Alamofire.framework */; };
+		F338A27B251A92A9001C4AC4 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F338A279251A92A9001C4AC4 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F338A27E251A92AD001C4AC4 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F338A27D251A92AD001C4AC4 /* KeychainAccess.framework */; };
+		F338A27F251A92AD001C4AC4 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F338A27D251A92AD001C4AC4 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F35FEC20243F935500E7A6D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35FEC1F243F935500E7A6D8 /* AppDelegate.swift */; };
 		F35FEC2A243F935600E7A6D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35FEC28243F935600E7A6D8 /* Main.storyboard */; };
-		F35FEC31243F946A00E7A6D8 /* LyrixLauncher.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = F35FEC1D243F935500E7A6D8 /* LyrixLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F35FEC31243F946A00E7A6D8 /* LyrixLauncher.app in Copy Files */ = {isa = PBXBuildFile; fileRef = F35FEC1D243F935500E7A6D8 /* LyrixLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F35FEC33243F948A00E7A6D8 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35FEC32243F948A00E7A6D8 /* ServiceManagement.framework */; };
 		F35FEC35243F97A000E7A6D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35FEC34243F97A000E7A6D8 /* Constants.swift */; };
 		F387477D2437BA1800DDE263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F387477C2437BA1800DDE263 /* Main.storyboard */; };
@@ -27,28 +31,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F35FEC30243F945000E7A6D8 /* CopyFiles */ = {
+		F338A27C251A92A9001C4AC4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F338A27F251A92AD001C4AC4 /* KeychainAccess.framework in Embed Frameworks */,
+				F338A27B251A92A9001C4AC4 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F35FEC30243F945000E7A6D8 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				F35FEC31243F946A00E7A6D8 /* LyrixLauncher.app in CopyFiles */,
+				F35FEC31243F946A00E7A6D8 /* LyrixLauncher.app in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8299417EA31A7E6BC69ECACF /* Pods-Lyrix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrix.release.xcconfig"; path = "Target Support Files/Pods-Lyrix/Pods-Lyrix.release.xcconfig"; sourceTree = "<group>"; };
+		C794824EDB2E94B13F68F694 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		C794831F33D04760B5B8EC97 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		C79484158F2922563E94B831 /* SpotifyAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyAuth.swift; sourceTree = "<group>"; };
 		C79484E2CF71AE342BFB60FA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		C794870EA9BBC9987110B916 /* SpotifyApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyApi.swift; sourceTree = "<group>"; };
 		C7948E86C33E1D157815EA20 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C7948F7AC964F910034F2D2E /* GeniusApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusApi.swift; sourceTree = "<group>"; };
-		D59473CE8E4F2DE5C2F4F219 /* Pods-Lyrix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrix.debug.xcconfig"; path = "Target Support Files/Pods-Lyrix/Pods-Lyrix.debug.xcconfig"; sourceTree = "<group>"; };
-		ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lyrix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F308DEB32433A10100D1A06C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F338A279251A92A9001C4AC4 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
+		F338A27D251A92AD001C4AC4 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/Mac/KeychainAccess.framework; sourceTree = "<group>"; };
+		F338A280251A92B0001C4AC4 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/Mac/OAuthSwift.framework; sourceTree = "<group>"; };
 		F35FEC1D243F935500E7A6D8 /* LyrixLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyrixLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F35FEC1F243F935500E7A6D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F35FEC29243F935600E7A6D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,8 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31C43DA2437D1CD0005C027 /* Pods_Lyrix.framework in Frameworks */,
+				F338A27E251A92AD001C4AC4 /* KeychainAccess.framework in Frameworks */,
 				F35FEC33243F948A00E7A6D8 /* ServiceManagement.framework in Frameworks */,
+				F338A27A251A92A9001C4AC4 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,8 +109,10 @@
 		12495CD36829DCA48BF65354 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F338A280251A92B0001C4AC4 /* OAuthSwift.framework */,
+				F338A27D251A92AD001C4AC4 /* KeychainAccess.framework */,
+				F338A279251A92A9001C4AC4 /* Alamofire.framework */,
 				F35FEC32243F948A00E7A6D8 /* ServiceManagement.framework */,
-				ECC1F3108A32C1ED58122B7C /* Pods_Lyrix.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,14 +132,13 @@
 		F3FFC2B223A6E0A200B2E332 = {
 			isa = PBXGroup;
 			children = (
-				F308DEB32433A10100D1A06C /* Podfile */,
 				F3FFC2D323A6E43600B2E332 /* README.md */,
 				F3FFC2BD23A6E0A200B2E332 /* Lyrix */,
 				F35FEC1E243F935500E7A6D8 /* LyrixLauncher */,
 				F3FFC2BC23A6E0A200B2E332 /* Products */,
-				F4B9E8677AB4E7388A461E40 /* Pods */,
 				12495CD36829DCA48BF65354 /* Frameworks */,
 				C79484E2CF71AE342BFB60FA /* .gitignore */,
+				C794824EDB2E94B13F68F694 /* Cartfile */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +165,7 @@
 				F3F9C7C724377607004A6EFE /* PreferencesView.swift */,
 				C794831F33D04760B5B8EC97 /* Store.swift */,
 				C7948F7AC964F910034F2D2E /* GeniusApi.swift */,
+				C79484158F2922563E94B831 /* SpotifyAuth.swift */,
 			);
 			path = Lyrix;
 			sourceTree = "<group>";
@@ -155,15 +176,6 @@
 				F3FFC2C523A6E0A300B2E332 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		F4B9E8677AB4E7388A461E40 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D59473CE8E4F2DE5C2F4F219 /* Pods-Lyrix.debug.xcconfig */,
-				8299417EA31A7E6BC69ECACF /* Pods-Lyrix.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,12 +202,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3FFC2CE23A6E0A300B2E332 /* Build configuration list for PBXNativeTarget "Lyrix" */;
 			buildPhases = (
-				2BF422B4461634D40FF073A1 /* [CP] Check Pods Manifest.lock */,
 				F3FFC2B723A6E0A200B2E332 /* Sources */,
 				F3FFC2B823A6E0A200B2E332 /* Frameworks */,
 				F3FFC2B923A6E0A200B2E332 /* Resources */,
-				20D0E6DF7138AB50EBC8FE1E /* [CP] Embed Pods Frameworks */,
-				F35FEC30243F945000E7A6D8 /* CopyFiles */,
+				F35FEC30243F945000E7A6D8 /* Copy Files */,
+				F338A27C251A92A9001C4AC4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,56 +268,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3FFC2C623A6E0A300B2E332 /* Preview Assets.xcassets in Resources */,
-				F308DEB42433A10100D1A06C /* Podfile in Resources */,
 				F3FFC2C323A6E0A300B2E332 /* Assets.xcassets in Resources */,
 				F387477D2437BA1800DDE263 /* Main.storyboard in Resources */,
 				C7948343AC8D1930AB603C9F /* .gitignore in Resources */,
+				C79480AA5CE5834E9D987930 /* Cartfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		20D0E6DF7138AB50EBC8FE1E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lyrix/Pods-Lyrix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lyrix/Pods-Lyrix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lyrix/Pods-Lyrix-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2BF422B4461634D40FF073A1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Lyrix-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F35FEC19243F935500E7A6D8 /* Sources */ = {
@@ -328,6 +297,7 @@
 				F3F9C7C824377607004A6EFE /* PreferencesView.swift in Sources */,
 				C7948A6D7C557F89B9B352E6 /* Store.swift in Sources */,
 				C7948D8A61210C3C442A7A6C /* GeniusApi.swift in Sources */,
+				C7948CDB1290A313CD2FB7CF /* SpotifyAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +474,6 @@
 		};
 		F3FFC2CF23A6E0A300B2E332 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D59473CE8E4F2DE5C2F4F219 /* Pods-Lyrix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lyrix/Lyrix.entitlements;
@@ -515,7 +484,10 @@
 				DEVELOPMENT_TEAM = G249UWGEHE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Lyrix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,7 +503,6 @@
 		};
 		F3FFC2D023A6E0A300B2E332 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8299417EA31A7E6BC69ECACF /* Pods-Lyrix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lyrix/Lyrix.entitlements;
@@ -542,7 +513,10 @@
 				DEVELOPMENT_TEAM = G249UWGEHE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Lyrix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

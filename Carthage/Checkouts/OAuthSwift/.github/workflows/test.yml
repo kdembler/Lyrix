@@ -1,0 +1,20 @@
+name: Test
+on: push
+jobs:
+  build:
+    name: test
+    runs-on: macOS-latest
+    env:
+        DEVELOPER_DIR: /Applications/Xcode_11.1.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: libxml
+        run: brew install libxml2
+      - name: Swift test
+        run: |
+          sdk=`xcrun -sdk iphonesimulator -show-sdk-path`
+          sdkVersion=`echo $sdk | sed -E 's/.*iPhoneSimulator(.*)\.sdk/\1/'`
+          swift test  -Xswiftc "-sdk" -Xswiftc "$sdk" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios$sdkVersion-simulator"

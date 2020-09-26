@@ -3,16 +3,12 @@ import ServiceManagement
 
 let spotifyAccessTokenKeychainId = "spotify_access_token"
 let spotifyRefreshTokenKeychainId = "spotify_refresh_token"
-let spotifyApiClientKeychainId = "spotify_api_client"
-let spotifyApiSecretKeychainId = "spotify_api_secret"
 
 class Store {
     static let shared = Store()
 
     private var _spotifyAccessToken: String?
     private var _spotifyRefreshToken: String?
-    private var _spotifyApiClient: String?
-    private var _spotifyApiSecret: String?
     private var _startupEnabled: Bool = false
     private var keychain: Keychain;
 
@@ -34,24 +30,6 @@ class Store {
             keychain[spotifyRefreshTokenKeychainId] = newValue
         }
     }
-    var spotifyApiClient: String? {
-        get {
-            _spotifyApiClient
-        }
-        set {
-            _spotifyApiClient = newValue
-            keychain[spotifyApiClientKeychainId] = newValue
-        }
-    }
-    var spotifyApiSecret: String? {
-        get {
-            _spotifyApiSecret
-        }
-        set {
-            _spotifyApiSecret = newValue
-            keychain[spotifyApiSecretKeychainId] = newValue
-        }
-    }
     var startupEnabled: Bool {
         get {
             _startupEnabled
@@ -59,12 +37,6 @@ class Store {
         set {
             _startupEnabled = newValue
             SMLoginItemSetEnabled(launcherIdentifier as CFString, newValue)
-        }
-    }
-
-    var spotifyApiDetailsSet: Bool {
-        get {
-            _spotifyApiClient != nil && _spotifyApiSecret != nil
         }
     }
 
@@ -76,8 +48,6 @@ class Store {
     private func readAllFields() {
         _spotifyAccessToken = keychain[spotifyAccessTokenKeychainId]
         _spotifyRefreshToken = keychain[spotifyRefreshTokenKeychainId]
-        _spotifyApiClient = keychain[spotifyApiClientKeychainId]
-        _spotifyApiSecret = keychain[spotifyApiSecretKeychainId]
         _startupEnabled = readStartupStatus()
     }
 

@@ -6,7 +6,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var barItem: NSStatusItem
     var actionItem: NSMenuItem!
 
-    var spotifyApi: SpotifyApi?
+    var spotifyApi = SpotifyApi()
 
     override init() {
         barItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -22,11 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePreferencesSaved), name: preferencesSavedNotification, object: nil)
         killLauncherApp()
 
-        if Store.shared.spotifyApiDetailsSet {
-            spotifyApi = SpotifyApi()
-        }
-        let isAuthenticated = spotifyApi?.isAuthenticated ?? false
-        if isAuthenticated {
+        if spotifyApi.auth.isAuthenticated {
             updateTrackInfo()
             startTrackUpdateTimer()
         }
@@ -62,18 +58,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func handleURLCallback(event: NSAppleEventDescriptor) {
-        guard let spotifyApi = self.spotifyApi else {
-            print("handleURLCallback without spotifyApi")
-            return
-        }
-        spotifyApi.handleAuthCallback(event)
+        spotifyApi.auth.handleAuthCallback(event)
     }
 
     @objc func handlePreferencesSaved() {
-        if Store.shared.spotifyApiDetailsSet {
-            spotifyApi = SpotifyApi()
-            refreshMenu()
-        }
+        refreshMenu()
     }
 
     func refreshMenu() {
@@ -81,21 +70,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         actionItem = NSMenuItem()
 
-        let isAuthenticated = spotifyApi?.isAuthenticated ?? false
-
-        if isAuthenticated {
+        if spotifyApi.auth.isAuthenticated {
             actionItem.title = "Fetching..."
-        } else if Store.shared.spotifyApiDetailsSet {
+        } else {
             actionItem.title = "Login"
             actionItem.action = #selector(loginToSpotify)
-        } else {
-            actionItem.title = "Spotify API details missing"
         }
         menu.addItem(actionItem)
 
         menu.addItem(NSMenuItem.separator())
 
-        if isAuthenticated {
+        if spotifyApi.auth.isAuthenticated {
             let logoutItem = NSMenuItem()
             logoutItem.title = "Logout"
             logoutItem.action = #selector(logoutFromSpotify)
@@ -116,11 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func loginToSpotify() {
-        guard let spotifyApi = self.spotifyApi else {
-            print("loginToSpotify without spotifyApi")
-            return
-        }
-        spotifyApi.authorize() { result in
+        spotifyApi.auth.authorize() { result in
             if case .success = result {
                 self.refreshMenu()
                 self.updateTrackInfo()
@@ -130,23 +111,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func logoutFromSpotify() {
-        guard let spotifyApi = self.spotifyApi else {
-            print("logoutFromSpotify without spotifyApi")
-            return
-        }
-        spotifyApi.logout() {
+        spotifyApi.auth.logout() {
             self.stopTrackUpdateTimer()
             self.refreshMenu()
         }
     }
 
     @objc func updateTrackInfo() {
-        guard let spotifyApi = self.spotifyApi else {
-            print("updateTrackInfo without spotifyApi")
-            return
-        }
         DispatchQueue.main.async {
-            spotifyApi.getCurrentTrackInfo() { result in
+            self.spotifyApi.getCurrentTrackInfo() { result in
                 switch result {
                 case .success(let track):
                     let status = "\(track.name) by \(track.artists.joined(separator: ", "))"
@@ -171,8 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         GeniusApi.getLyricsLink(track: track!) { result in
             switch result {
             case .success(let songUrlString):
-                print("Got URL")
-                print(songUrlString)
+                print("opening lyrics URL: \(songUrlString)")
                 let songUrl = URL(string: songUrlString)!
                 NSWorkspace.shared.open(songUrl)
             case .failure:
