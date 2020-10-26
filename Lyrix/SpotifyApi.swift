@@ -4,6 +4,7 @@ enum ApiError: Error {
     case unauthorized
     case failure
     case noPlayerAvailable
+    case sessionExpired
 }
 
 struct TrackInfo {
@@ -36,8 +37,12 @@ class SpotifyApi {
                     switch result {
                     case .success:
                         self.makeRequest(of: T.self, url: urlSuffix, completion: completion)
-                    case .failure:
-                        completion(.failure(.failure))
+                    case .failure(let reason):
+                        if case .invalidGrant = reason {
+                            completion(.failure(.sessionExpired))
+                        } else {
+                            completion(.failure(.failure))
+                        }
                     }
                 }
                 return

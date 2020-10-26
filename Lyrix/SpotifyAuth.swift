@@ -9,11 +9,17 @@ enum SpotifyAuthError: Error {
     case failure
     case stateError
     case authorizeError
+    case invalidGrant
 }
 
 struct AuthResponse: Codable {
     let access_token: String
     let refresh_token: String
+}
+
+struct AuthErrorResponse: Codable {
+    let error: String
+    let error_description: String
 }
 
 class SpotifyAuth {
@@ -42,10 +48,10 @@ class SpotifyAuth {
     private var pkceVerifier: String?
     private var pkceChallenge: String?
     private var state: String?
-    private var notificationCenter = NotificationCenter()
+    var notificationCenter = NotificationCenter()
     private var callbackObserver: NSObjectProtocol?
 
-    func authorize(completion: @escaping (Result<Void, SpotifyAuthError>) -> ()) {
+    func authorize(completion: @escaping (Result<Void, SpotifyAuthError>) -> () = { _ in }) {
         self.removeCallbackObserver()
 
         do {
@@ -121,7 +127,12 @@ class SpotifyAuth {
                     }
 
                     if let code = code {
-                        self.exchangeCodeForToken(code: code, completion: completion)
+                        self.exchangeCodeForToken(code: code) { result in
+                            if case .success = result {
+                                self.notificationCenter.post(name: authorizedNotification, object: nil)
+                            }
+                            completion(result)
+                        }
                     } else {
                         print("callbackUrl doesn't have code")
                         debugPrint(callbackUrl)
@@ -155,15 +166,21 @@ class SpotifyAuth {
                 completion(.success(()))
                 break
             case .failure(let reason):
-                print("Refresh failure")
+                if case .invalidGrant = reason {
+                    print("Refresh token expired")
+                    self.logout()
+                } else {
+                    print("Refresh failure")
+                }
                 completion(.failure(reason))
             }
         }
     }
 
-    func logout(completion: @escaping () -> ()) {
+    func logout(completion: () -> () = { }) {
         self.accessToken = nil
         self.refreshToken = nil
+        self.notificationCenter.post(name: loggedOutNotification, object: nil)
         completion()
     }
 
@@ -201,7 +218,7 @@ class SpotifyAuth {
     }
 
     private func makeTokenRequest(parameters: [String: String], completion: @escaping (Result<Void, SpotifyAuthError>) -> ()) {
-        let request = AF.request(accessTokenUrl, method: .post, parameters: parameters).validate(statusCode: 200..<300).validate(contentType: ["application/json"])
+        let request = AF.request(accessTokenUrl, method: .post, parameters: parameters).validate(contentType: ["application/json"])
         request.responseDecodable(of: AuthResponse.self) { response in
             switch response.result {
             case .success(let data):
@@ -213,6 +230,16 @@ class SpotifyAuth {
                 if let data = response.data {
                     if let bodyString = String(data: data, encoding: .utf8) {
                         print(bodyString)
+                        request.responseDecodable(of: AuthErrorResponse.self) { response in
+                            if case .success(let data) = response.result {
+                                if data.error == "invalid_grant" {
+                                    completion(.failure(.invalidGrant))
+                                    return
+                                }
+                            }
+                            completion(.failure(.authorizeError))
+                        }
+                        break
                     } else {
                         print("Couldn't decode body")
                     }

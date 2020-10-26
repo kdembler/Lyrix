@@ -18,8 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var track: TrackInfo?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleURLCallback(event:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePreferencesSaved), name: preferencesSavedNotification, object: nil)
+        registerHandlers()
         killLauncherApp()
 
         if spotifyApi.auth.isAuthenticated {
@@ -35,6 +34,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         button.image = NSImage(named: "MenuBarIcon")
 
         refreshMenu()
+    }
+
+    func registerHandlers() {
+        NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleURLCallback(event:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePreferencesSaved), name: preferencesSavedNotification, object: nil)
+        self.spotifyApi.auth.notificationCenter.addObserver(self, selector: #selector(handleAuthorized), name: authorizedNotification, object: nil)
+        self.spotifyApi.auth.notificationCenter.addObserver(self, selector: #selector(handleLoggedOut), name: loggedOutNotification, object: nil)
     }
 
     func killLauncherApp() {
@@ -63,6 +69,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func handlePreferencesSaved() {
         refreshMenu()
+    }
+
+    @objc func handleAuthorized() {
+        refreshMenu()
+        self.updateTrackInfo()
+        self.startTrackUpdateTimer()
+    }
+
+    @objc func handleLoggedOut() {
+        self.stopTrackUpdateTimer()
+        self.refreshMenu()
     }
 
     func refreshMenu() {
@@ -101,20 +118,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func loginToSpotify() {
-        spotifyApi.auth.authorize() { result in
-            if case .success = result {
-                self.refreshMenu()
-                self.updateTrackInfo()
-                self.startTrackUpdateTimer()
-            }
-        }
+        spotifyApi.auth.authorize()
     }
 
     @objc func logoutFromSpotify() {
-        spotifyApi.auth.logout() {
-            self.stopTrackUpdateTimer()
-            self.refreshMenu()
-        }
+        spotifyApi.auth.logout()
     }
 
     @objc func updateTrackInfo() {
@@ -130,6 +138,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     switch reason {
                     case .noPlayerAvailable:
                         self.actionItem.title = "No player available"
+                    case .sessionExpired:
+                        return
                     default:
                         self.actionItem.title = "Error"
                         print("Getting track info failed")
