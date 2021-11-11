@@ -1,5 +1,6 @@
 import keytar from 'keytar'
-import { Logger } from './log'
+import { Logger } from '../log'
+import { sharedLyrixStore } from '../store'
 
 const SERVICE_NAME = 'Lyrix_Keystore'
 
@@ -9,25 +10,19 @@ const keymap = {
 }
 
 class _Keystore {
-  private _isAuthorized = false
-  private _onAuthorizedChange: ((authorized: boolean) => void) | null = null
-
-  set onAuthorizedChange(value: (authorized: boolean) => void) {
-    this._onAuthorizedChange = value
-  }
-
   get isAuthorized(): boolean {
-    return this._isAuthorized
+    return sharedLyrixStore.getState().isAuthorized
   }
 
   private set isAuthorized(value: boolean) {
     Logger.info('Keystore', `isAuthorized changed to ${value.toString()}`)
-    this._isAuthorized = value
-    this._onAuthorizedChange?.(value)
+    sharedLyrixStore.getState().setIsAuthorized(value)
   }
 
+  initializedPromise: Promise<void>
+
   constructor() {
-    this.refreshStatus()
+    this.initializedPromise = this.refreshStatus()
   }
 
   getAccessToken = () => keytar.getPassword(SERVICE_NAME, keymap.spotifyAccessToken)
@@ -35,8 +30,8 @@ class _Keystore {
 
   refreshStatus = async () => {
     Logger.debug('Keystore', 'reading auth status')
-    const [accessToken, refreshToken] = await Promise.all([this.getAccessToken(), this.getRefreshToken()])
-    this.isAuthorized = !!accessToken && !!refreshToken
+    const accessToken = await this.getAccessToken()
+    this.isAuthorized = !!accessToken
   }
 
   setAccessToken = (token: string) => {

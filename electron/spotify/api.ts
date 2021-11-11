@@ -1,17 +1,26 @@
 import { URL } from 'url'
 import { dialog, shell } from 'electron'
 import { createHash, randomBytes } from 'crypto'
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import qs from 'qs'
 import { Keystore } from './keystore'
-import { Logger } from './log'
+import { createScopedLogger } from '../log'
+import { getParsedTrack, RawTrack } from './track'
+import { sharedLyrixStore } from '../store'
+import { getParsedProfile, RawProfile } from './profile'
 
 export const SPOTIFY_CONFIG = {
   authorizeUrl: 'https://accounts.spotify.com/authorize',
   accessTokenUrl: 'https://accounts.spotify.com/api/token',
+  apiBaseUrl: 'https://api.spotify.com/v1',
   clientId: '0238be12311d40b1a96aea3af50a1d0c',
   scope: 'user-read-currently-playing user-read-playback-state',
   redirectUri: 'lyrix://oauth-callback/spotify',
+  pollPeriodSec: 10,
+}
+
+class SpotifyUnauthorizedRequest extends Error {
+  message = 'Failed to make Spotify request - unauthorized'
 }
 
 const getRandomString = (length: number) => {
@@ -39,10 +48,22 @@ class _SpotifyApi {
   readonly pkceVerifier: string
   readonly pkceChallenge: string
   private state = ''
+  private logger = createScopedLogger('Spotify')
 
   constructor() {
     this.pkceVerifier = generatePkceVerifier()
     this.pkceChallenge = generatePkceChallenge(this.pkceVerifier)
+
+    setInterval(() => {
+      if (!Keystore.isAuthorized) return
+      this.getCurrentTrackInfo()
+    }, SPOTIFY_CONFIG.pollPeriodSec * 1000)
+
+    Keystore.initializedPromise.then(() => {
+      if (Keystore.isAuthorized) {
+        this.getUserProfile()
+      }
+    })
   }
 
   openAuthorizeURL() {
@@ -92,35 +113,99 @@ class _SpotifyApi {
     await this.makeTokenRequest(body)
   }
 
-  private async requestTokenRefresh() {
+  private async tryTokenRefresh(): Promise<boolean> {
     const refreshToken = await Keystore.getRefreshToken()
-    if (!refreshToken) return
+    if (!refreshToken) return false
 
     const body = {
       client_id: SPOTIFY_CONFIG.clientId,
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
     }
-    await this.makeTokenRequest(body)
+
+    try {
+      await this.makeTokenRequest(body)
+      return Keystore.isAuthorized
+    } catch (e) {
+      this.logger.error('Failed to refresh token', e)
+      return false
+    }
   }
 
   private async makeTokenRequest(body: Record<string, string>) {
     try {
       const response = await axios.post<TokenResponse>(SPOTIFY_CONFIG.accessTokenUrl, qs.stringify(body))
       const { access_token: accessToken, refresh_token: refreshToken } = response.data
-      Logger.info('Spotify', 'authorized')
+      this.logger.info('authorized')
       await Promise.all([Keystore.setAccessToken(accessToken), Keystore.setRefreshToken(refreshToken)])
+      this.getUserProfile()
     } catch (err) {
       console.error('Failed to obtain access token')
       dialog.showErrorBox('error', JSON.stringify({ error: err }))
     }
   }
 
-  // public async getCurrentTrackInfo() {
-  //   try {
-  //     await axios.get('https://api.spotify.com/v1/me/player')
-  //   }
-  // }
+  public async getCurrentTrackInfo() {
+    this.logger.debug('getting current track')
+    try {
+      const response = await this.makeApiRequest<RawTrack>('me/player/currently-playing')
+      if (response.status === 204) {
+        this.logger.info('empty track response')
+        sharedLyrixStore.getState().setCurrentTrack(null)
+      } else if (response.status === 200) {
+        const track = getParsedTrack(response.data)
+        this.logger.info(`currently playing: ${track.formatted}`)
+        sharedLyrixStore.getState().setCurrentTrack(track)
+      } else {
+        this.logger.error('unknown track response', { status: response.status, data: response.data })
+      }
+    } catch (e) {
+      this.logger.error('failed to get current track info', e)
+    }
+  }
+
+  public async getUserProfile() {
+    this.logger.debug('getting user profile')
+    try {
+      const response = await this.makeApiRequest<RawProfile>('me')
+      const profile = getParsedProfile(response.data)
+      this.logger.info(`got user profile: ${profile.name}`)
+      const state = sharedLyrixStore.getState()
+      this.logger.debug('got store', state)
+      state.setUserProfile(profile)
+    } catch (e) {
+      this.logger.error('failed to get current user info', e)
+    }
+  }
+
+  private async makeApiRequest<TData>(endpoint: string): Promise<AxiosResponse<TData>> {
+    if (!Keystore.isAuthorized) {
+      throw SpotifyUnauthorizedRequest
+    }
+
+    try {
+      const accessToken = await Keystore.getAccessToken()
+      return await axios.get<TData>(`${SPOTIFY_CONFIG.apiBaseUrl}/${endpoint}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+    } catch (e) {
+      const axiosError = e as AxiosError
+      if (axiosError.isAxiosError) {
+        if (axiosError.response?.status === 401) {
+          this.logger.info('received 401, refreshing token')
+          // refresh token and retry
+          const refreshed = await this.tryTokenRefresh()
+          if (refreshed) {
+            return this.makeApiRequest<TData>(endpoint)
+          } else {
+            throw SpotifyUnauthorizedRequest
+          }
+        }
+      }
+
+      throw e
+    }
+  }
 }
 
 export const SpotifyApi = new _SpotifyApi()

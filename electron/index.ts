@@ -2,9 +2,11 @@ import path from 'path'
 
 import { app, ipcMain, IpcMainEvent } from 'electron'
 import { LyrixTray } from './tray'
-import { SpotifyApi } from './spotify'
+import { SpotifyApi } from './spotify/api'
 import { LyrixWindow } from './window'
-import { Keystore } from './keystore'
+import { Action, runAction } from './actions'
+import { serializeState, sharedLyrixStore } from './store'
+import { Logger } from './log'
 
 let lyrixTray: LyrixTray
 let lyrixWindow: LyrixWindow
@@ -12,14 +14,15 @@ let lyrixWindow: LyrixWindow
 app.whenReady().then(() => {
   app.setActivationPolicy('accessory')
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   lyrixWindow = new LyrixWindow()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   lyrixTray = new LyrixTray(lyrixWindow)
 
-  Keystore.onAuthorizedChange = (value) => {
-    lyrixWindow.sendMessageToApp('authorized_change', value)
-  }
+  sharedLyrixStore.subscribe((state) => {
+    const serializedState = serializeState(state)
+    Logger.debug('Index', 'sending state update', serializedState)
+    lyrixWindow.sendMessageToApp('state_update', serializedState)
+  })
 })
 
 app.on('open-url', (event, url) => {
@@ -27,20 +30,8 @@ app.on('open-url', (event, url) => {
   SpotifyApi.handleAuthCallback(url)
 })
 
-ipcMain.on('authorize', (_: IpcMainEvent, __: any) => {
-  SpotifyApi.openAuthorizeURL()
-})
-
-ipcMain.on('refresh', (_: IpcMainEvent, __: any) => {
-  Keystore.refreshStatus()
-})
-
-ipcMain.on('logout', (_: IpcMainEvent, __: any) => {
-  Keystore.clear()
-})
-
-ipcMain.on('quit', (_: IpcMainEvent, __: any) => {
-  app.quit()
+ipcMain.on('requestAction', (_: IpcMainEvent, actionType: Action) => {
+  runAction(actionType)
 })
 
 if (process.defaultApp) {

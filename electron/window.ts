@@ -1,10 +1,11 @@
 import { BrowserWindow } from 'electron'
 import isDev from 'electron-is-dev'
 import path from 'path'
-import { Logger } from './log'
+import { createScopedLogger } from './log'
 
 export class LyrixWindow {
   window: BrowserWindow
+  logger = createScopedLogger('Window')
 
   constructor() {
     this.window = new BrowserWindow({
@@ -33,23 +34,22 @@ export class LyrixWindow {
       this.window.webContents.openDevTools({ mode: 'detach' })
     }
 
-    Logger.debug('window', 'created window')
+    this.logger.debug('created window')
   }
 
-  sendMessageToApp(channel: string, value: any) {
-    Logger.info('window', `sending message on '${channel}'`)
-    Logger.debug('window', `message: ${value}`)
+  sendMessageToApp(channel: string, value: unknown) {
+    this.logger.info(`sending message on '${channel}'`, { value })
     this.window.webContents.send(channel, value)
   }
 
   private showAt(x: number, y: number) {
-    Logger.debug('window', 'showing window')
+    this.logger.debug('showing window')
     this.window.setPosition(x, y, false)
     this.prompt()
   }
 
   private hide() {
-    Logger.debug('window', 'hiding window')
+    this.logger.debug('hiding window')
     this.window.hide()
   }
 

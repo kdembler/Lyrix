@@ -1,18 +1,19 @@
 import React from 'react'
-import { useSpotify } from '../hooks/useSpotify'
+import { useSharedState } from '../hooks/useSharedState'
 
 export const MainView: React.FC = () => {
-  const { requestLogout } = useSpotify()
+  const { currentTrack } = useSharedState()
 
   return (
-    <div className="w-full h-full grid grid-flow-row justify-center content-center">
-      <h1 className="text-center text-xl">MainView</h1>
-      <button
-        onClick={requestLogout}
-        className="bg-gray-300 hover:bg-gray-400 transition-colors rounded-2xl px-4 py-2 mt-5"
-      >
-        Logout
-      </button>
+    <div className="flex flex-col p-5">
+      <h3 className="text-sm font-semibold">Currently playing:</h3>
+      <span className="text-sm text-gray-800">{currentTrack ? currentTrack.formatted : 'Nothing'}</span>
+      {/*<Button onClick={() => requestAction('logout')} className="mt-5">*/}
+      {/*  Logout*/}
+      {/*</Button>*/}
+      {/*<Button onClick={() => requestAction('getTrack')} className="mt-5">*/}
+      {/*  Request track*/}
+      {/*</Button>*/}
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import { MainWindow } from './components/MainWindow'
-import { SpotifyManager } from './components/SpotifyManager'
+import { SharedStateManager } from './components/SharedStateManager'
 
 export const App: React.FC = () => {
   return (
     <>
-      <SpotifyManager />
+      <SharedStateManager />
       <MainWindow />
     </>
   )

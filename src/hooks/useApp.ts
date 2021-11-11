@@ -1,10 +1,11 @@
 import { useCallback } from 'react'
+import { Action } from '../../electron/actions'
 
 export const useApp = () => {
-  const requestQuit = useCallback(() => {
-    console.log('App:requestQuit()')
-    window.Main.quit()
+  const requestAction = useCallback((actionType: Action) => {
+    console.log(`App:requestAction('${actionType}')`)
+    window.Main.requestAction(actionType)
   }, [])
 
-  return { requestQuit }
+  return { requestAction }
 }

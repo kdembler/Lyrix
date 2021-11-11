@@ -1,0 +1,16 @@
+import React, { ButtonHTMLAttributes } from 'react'
+import classNames from 'classnames'
+
+export const IconButton: React.FC<ButtonHTMLAttributes<unknown>> = ({ children, className, ...rest }) => {
+  return (
+    <button
+      className={classNames(
+        'inline-flex rounded-full p-2 stroke-current text-gray-600 hover:bg-gray-400 transition-colors',
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  )
+}

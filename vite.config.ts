@@ -33,6 +33,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
     },
     optimizeDeps: {
       exclude: ['path'],
+      include: ['electron', 'electron-shared-state'],
     },
   }
 }

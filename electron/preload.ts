@@ -1,4 +1,5 @@
 import { ipcRenderer, contextBridge } from 'electron'
+import { Action } from './actions'
 
 declare global {
   interface Window {
@@ -7,27 +8,15 @@ declare global {
 }
 
 export const api = {
-  authorize: () => {
-    ipcRenderer.send('authorize')
+  requestAction: (actionType: Action) => {
+    ipcRenderer.send('requestAction', actionType)
   },
 
-  refresh: () => {
-    ipcRenderer.send('refresh')
-  },
-
-  logout: () => {
-    ipcRenderer.send('logout')
-  },
-
-  quit: () => {
-    ipcRenderer.send('quit')
-  },
-
-  on: (channel: string, callback: (_: unknown, data: any) => void) => {
+  on: (channel: string, callback: (_: unknown, data: unknown) => void) => {
     ipcRenderer.on(channel, callback)
   },
 
-  off: (channel: string, callback: (_: unknown, data: any) => void) => {
+  off: (channel: string, callback: (_: unknown, data: unknown) => void) => {
     ipcRenderer.off(channel, callback)
   },
 }
