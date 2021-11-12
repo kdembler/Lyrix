@@ -9,8 +9,8 @@ export class LyrixWindow {
 
   constructor() {
     this.window = new BrowserWindow({
-      width: 250,
-      height: 150,
+      width: 300,
+      height: 180,
       show: false,
       frame: false,
       fullscreenable: false,

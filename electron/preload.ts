@@ -12,11 +12,11 @@ export const api = {
     ipcRenderer.send('requestAction', actionType)
   },
 
-  on: (channel: string, callback: (_: unknown, data: unknown) => void) => {
+  on: (channel: string, callback: (_: unknown, data: string) => void) => {
     ipcRenderer.on(channel, callback)
   },
 
-  off: (channel: string, callback: (_: unknown, data: unknown) => void) => {
+  off: (channel: string, callback: (_: unknown, data: string) => void) => {
     ipcRenderer.off(channel, callback)
   },
 }

@@ -61,6 +61,7 @@ class _SpotifyApi {
 
     Keystore.initializedPromise.then(() => {
       if (Keystore.isAuthorized) {
+        this.getCurrentTrackInfo()
         this.getUserProfile()
       }
     })
