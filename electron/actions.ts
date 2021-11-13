@@ -3,13 +3,20 @@ import { Keystore } from './spotify/keystore'
 import { app } from 'electron'
 import { Logger } from './log'
 import { sharedLyrixStore } from './store'
+import { GeniusApi } from './genius'
 
 export const actions = {
-  authorize: () => SpotifyApi.openAuthorizeURL(),
-  logout: () => Keystore.clear(),
-  quit: () => app.quit(),
-  getTrack: () => SpotifyApi.getCurrentTrackInfo(),
+  startAuthorize: () => SpotifyApi.openAuthorizeURL(),
+  openLyrics: () => GeniusApi.openLyricsURL(),
   sendState: () => sharedLyrixStore.setState({}),
+  logout: () => {
+    Keystore.clear()
+    sharedLyrixStore.setState({
+      currentTrack: null,
+      userProfile: null,
+    })
+  },
+  quit: () => app.quit(),
 } as const
 
 export type Action = keyof typeof actions

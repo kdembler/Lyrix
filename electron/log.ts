@@ -18,6 +18,7 @@ class _Logger {
         return `${timestamp} ${level} ${message}`
       }),
       format.metadata({ fillExcept: ['timestamp'] })
+      // format.prettyPrint()
     ),
     exitOnError: false,
   })

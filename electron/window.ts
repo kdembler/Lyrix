@@ -16,8 +16,8 @@ export class LyrixWindow {
       fullscreenable: false,
       resizable: false,
       webPreferences: {
-        // devTools: isDev,
-        devTools: true,
+        devTools: isDev,
+        // devTools: true,
         preload: path.join(__dirname, 'preload.js'),
       },
     })
@@ -25,20 +25,20 @@ export class LyrixWindow {
     const port = process.env.PORT || 3000
     const url = isDev ? `http://localhost:${port}` : path.join(__dirname, '../src/out/index.html')
 
+    this.window.on('blur', () => this.hide())
     if (isDev) {
       this.window.loadURL(url)
       this.window.webContents.openDevTools({ mode: 'detach' })
     } else {
-      this.window.on('blur', () => this.hide())
       this.window.loadFile(url)
-      this.window.webContents.openDevTools({ mode: 'detach' })
+      // this.window.webContents.openDevTools({ mode: 'detach' })
     }
 
     this.logger.debug('created window')
   }
 
   sendMessageToApp(channel: string, value: unknown) {
-    this.logger.info(`sending message on '${channel}'`, { value })
+    this.logger.debug(`sending message on '${channel}'`, { value })
     this.window.webContents.send(channel, value)
   }
 

@@ -1,13 +1,21 @@
 import React, { ButtonHTMLAttributes } from 'react'
+import classNames from 'classnames'
 
-export const Button: React.FC<ButtonHTMLAttributes<unknown>> = ({ children, ...props }) => {
+type ButtonProps = {
+  variant?: 'primary' | 'default'
+} & ButtonHTMLAttributes<unknown>
+
+export const Button: React.FC<ButtonProps> = ({ variant = 'default', children, ...props }) => {
   return (
     <button
       type="button"
       {...props}
-      className={`inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500${
-        props.className ? ` ${props.className}` : ''
-      }`}
+      className={classNames(
+        'inline-flex uppercase transition-colors font-semibold rounded',
+        variant === 'default' && 'bg-green-200 hover:bg-green-300 px-2 py-1 font-semibold text-xs',
+        variant === 'primary' && 'bg-green-500 hover:bg-green-600 text-white px-3 py-2 font-bold text-xs',
+        props.className
+      )}
     >
       {children}
     </button>

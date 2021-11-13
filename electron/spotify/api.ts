@@ -1,5 +1,5 @@
 import { URL } from 'url'
-import { dialog, shell } from 'electron'
+import { shell } from 'electron'
 import { createHash, randomBytes } from 'crypto'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import qs from 'qs'
@@ -8,16 +8,7 @@ import { createScopedLogger } from '../log'
 import { getParsedTrack, RawTrack } from './track'
 import { sharedLyrixStore } from '../store'
 import { getParsedProfile, RawProfile } from './profile'
-
-export const SPOTIFY_CONFIG = {
-  authorizeUrl: 'https://accounts.spotify.com/authorize',
-  accessTokenUrl: 'https://accounts.spotify.com/api/token',
-  apiBaseUrl: 'https://api.spotify.com/v1',
-  clientId: '0238be12311d40b1a96aea3af50a1d0c',
-  scope: 'user-read-currently-playing user-read-playback-state',
-  redirectUri: 'lyrix://oauth-callback/spotify',
-  pollPeriodSec: 10,
-}
+import { SPOTIFY_CONFIG } from '../constants'
 
 class SpotifyUnauthorizedRequest extends Error {
   message = 'Failed to make Spotify request - unauthorized'
@@ -140,9 +131,9 @@ class _SpotifyApi {
       this.logger.info('authorized')
       await Promise.all([Keystore.setAccessToken(accessToken), Keystore.setRefreshToken(refreshToken)])
       this.getUserProfile()
+      this.getCurrentTrackInfo()
     } catch (err) {
-      console.error('Failed to obtain access token')
-      dialog.showErrorBox('error', JSON.stringify({ error: err }))
+      this.logger.error('Failed to obtain access token', err)
     }
   }
 
@@ -155,7 +146,7 @@ class _SpotifyApi {
         sharedLyrixStore.getState().setCurrentTrack(null)
       } else if (response.status === 200) {
         const track = getParsedTrack(response.data)
-        this.logger.info(`currently playing: ${track.formatted}`)
+        this.logger.debug(`currently playing: ${track.formatted}`)
         sharedLyrixStore.getState().setCurrentTrack(track)
       } else {
         this.logger.error('unknown track response', { status: response.status, data: response.data })

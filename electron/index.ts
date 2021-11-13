@@ -28,6 +28,7 @@ app.whenReady().then(() => {
 app.on('open-url', (event, url) => {
   event.preventDefault()
   SpotifyApi.handleAuthCallback(url)
+  lyrixWindow.prompt()
 })
 
 ipcMain.on('requestAction', (_: IpcMainEvent, actionType: Action) => {
