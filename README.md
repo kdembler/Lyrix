@@ -1,28 +1,31 @@
-# Vite + React + Typescript + Electron - Starter
+<div align="center">
+  <h1>
+    <img height="128" width="128" alt="lyrix logo" src="resources/icon.png"/>
+  </h1>
 
-![Vite + React + Typescript + Tailwind + Electron Starter](Screenshot.jpg)
+<strong>Lyrix - music lyrics in your status bar</strong>
 
-> It is a simple starter tempalte without unnecessary packages.
+</div>
 
-This Starter utilizes [Vite](https://github.com/vitejs/vite), [Tailwind](https://tailwindcss.com/), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/) and [Electron](https://electronjs.org/).
+Lyrix is a status bar/tray app that lets you quickly access lyrics for your currently playing Spotify song.
 
-By default, the React framework is used for the interface, but you can easily use any other framework such as Vue, Preact, Angular, Svelte or anything else.
+**Features:**
 
-> Vite is framework agnostic
+- Uses Spotify API to figure out the currently playing song
+- Provides a link to the first [Genius](https://genius.com) search result
+- Can run at startup
+- Your data never leaves your device
 
-## Installation
+<div align="center">
+  <img width="400" alt="lyrix logo" src="docs/screenshot.png" />
+</div>
 
-Clone this repo and install all dependencies  
-`yarn` or `npm install`
+### Contributing
 
-## Development
+All kinds of contributions are welcome, feel free to open a PR/issue.
 
-`yarn dev` or `npm run dev`
+### Credits
 
-## Build
+All icons used in the app come from [iconmonstr](https://iconmonstr.com/).
 
-`yarn build` or `npm run build`
-
-## Publish
-
-`yarn dist` or `npm run dist`
+Bootstrapped by [this great Vite Electron starter](https://github.com/maxstue/vite-reactts-electron-starter).
