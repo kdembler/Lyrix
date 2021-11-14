@@ -1,6 +1,17 @@
 {
   "name": "lyrix",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "author": {
+    "name": "Klaudiusz Dembler",
+    "email": "contact@kdembler.com"
+  },
+  "description": "Status bar app to quickly get lyrics for the currently playing Spotify song",
+  "keywords": [
+    "spotify",
+    "lyrics",
+    "genius",
+    "music"
+  ],
   "license": "MIT",
   "main": "main/index.js",
   "productName": "lyrix",
@@ -20,6 +31,7 @@
     "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.4",
     "@tailwindcss/line-clamp": "^0.2.2",
     "@types/qs": "^6.9.7",
     "@vitejs/plugin-react-refresh": "^1.3.6",
@@ -73,6 +85,7 @@
       "buildResources": "resources"
     },
     "appId": "dev.kdembler.lyrix",
+    "productName": "Lyrix",
     "protocols": [
       {
         "name": "lyrix auth link",
@@ -82,8 +95,7 @@
       }
     ],
     "mac": {
-      "category": "public.app-category.Reference",
-      "target": "dir"
+      "category": "public.app-category.Reference"
     }
   }
 }

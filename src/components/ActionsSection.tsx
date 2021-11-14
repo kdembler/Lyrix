@@ -11,7 +11,7 @@ export const ActionsSection: React.FC = () => {
   const { requestAction } = useApp()
 
   return (
-    <div className="w-full flex flex-row-reverse justify-between items-center pl-4 pr-2 py-1 z-10">
+    <div className="w-full flex flex-row-reverse justify-between items-center pl-4 pr-2 py-1">
       <div>
         <IconButton onClick={() => setSettingsOpen(true)}>
           <CogIcon className="w-5 h-5" />

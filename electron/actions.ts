@@ -16,6 +16,22 @@ export const actions = {
       userProfile: null,
     })
   },
+  enableAutolaunch: () => {
+    Logger.info('Actions', 'enabling app login item')
+    app.setLoginItemSettings({
+      openAtLogin: true,
+      openAsHidden: true,
+    })
+    sharedLyrixStore.getState().setAutolaunchEnabled(true)
+  },
+  disableAutolaunch: () => {
+    Logger.info('Actions', 'disabling app login item')
+    app.setLoginItemSettings({
+      openAtLogin: false,
+      openAsHidden: true,
+    })
+    sharedLyrixStore.getState().setAutolaunchEnabled(false)
+  },
   quit: () => app.quit(),
 } as const
 

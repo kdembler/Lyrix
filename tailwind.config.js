@@ -9,5 +9,5 @@ module.exports = {
       sans: ['Lato', 'ui-sans-serif', 'system-ui'],
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [require('@tailwindcss/line-clamp'), require('@tailwindcss/forms')],
 }

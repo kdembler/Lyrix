@@ -7,6 +7,7 @@ type SharedLyrixStateWithActions = SharedLyrixState & {
   setIsAuthorized: (isAuthorized: boolean) => void
   setCurrentTrack: (track: Track | null) => void
   setUserProfile: (profile: Profile | null) => void
+  setAutolaunchEnabled: (autolaunchEnabled: boolean) => void
 }
 
 export const sharedLyrixStore = create<SharedLyrixStateWithActions>((set) => ({
@@ -15,12 +16,13 @@ export const sharedLyrixStore = create<SharedLyrixStateWithActions>((set) => ({
   setIsAuthorized: (isAuthorized) => set((state) => ({ ...state, isAuthorized })),
   setCurrentTrack: (track) => set((state) => ({ ...state, currentTrack: track })),
   setUserProfile: (profile) => set((state) => ({ ...state, userProfile: profile })),
+  setAutolaunchEnabled: (autolaunchEnabled) => set((state) => ({ ...state, autolaunchEnabled })),
 }))
 
 type StateKey = keyof SharedLyrixState
 
 export const serializeState = (state: SharedLyrixStateWithActions) => {
-  const whitelist: StateKey[] = ['currentTrack', 'isAuthorized', 'userProfile']
+  const whitelist: StateKey[] = ['currentTrack', 'isAuthorized', 'userProfile', 'autolaunchEnabled']
   const filteredState = whitelist.reduce((acc, key) => {
     acc[key] = state[key]
     return acc

@@ -6,7 +6,7 @@ export const IconButton: React.FC<ButtonHTMLAttributes<unknown>> = ({ children, 
   return (
     <button
       className={classNames(
-        'inline-flex rounded-full p-2 fill-current text-green-900 hover:bg-green-100 transition-colors cursor-pointer',
+        'inline-flex rounded-full p-2 text-green-900 hover:bg-green-100 transition-colors cursor-pointer',
         className
       )}
       {...rest}

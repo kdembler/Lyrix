@@ -653,6 +653,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tailwindcss/forms@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "@tailwindcss/forms@npm:0.3.4"
+  dependencies:
+    mini-svg-data-uri: ^1.2.3
+  peerDependencies:
+    tailwindcss: ">=2.0.0"
+  checksum: 4b2b2b3361169bf5adf1a575c7dc8bb7946192c0edf4829e5b1de342a4e1b8138a01441a8ecef70e0777180b0797506e3f44854f09a32b9d7083658271543783
+  languageName: node
+  linkType: hard
+
 "@tailwindcss/line-clamp@npm:^0.2.2":
   version: 0.2.2
   resolution: "@tailwindcss/line-clamp@npm:0.2.2"
@@ -4523,6 +4534,7 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "lyrix@workspace:."
   dependencies:
+    "@tailwindcss/forms": ^0.3.4
     "@tailwindcss/line-clamp": ^0.2.2
     "@types/babel__code-frame": ^7.0.3
     "@types/babel__core": ^7.1.16
@@ -4658,6 +4670,15 @@ fsevents@~2.3.2:
   version: 2.1.0
   resolution: "mimic-response@npm:2.1.0"
   checksum: 014fad6ab936657e5f2f48bd87af62a8e928ebe84472aaf9e14fec4fcb31257a5edff77324d8ac13ddc6685ba5135cf16e381efac324e5f174fb4ddbf902bf07
+  languageName: node
+  linkType: hard
+
+"mini-svg-data-uri@npm:^1.2.3":
+  version: 1.4.3
+  resolution: "mini-svg-data-uri@npm:1.4.3"
+  bin:
+    mini-svg-data-uri: cli.js
+  checksum: bd1789c34907a36ae9157897b7c7f6ad700e71c8cb6d725bb2810ce6211abcaa3717333ca17408f6f8b2a44055e571cd5b78d478688e1864513cb7f8e023ae3f
   languageName: node
   linkType: hard
 

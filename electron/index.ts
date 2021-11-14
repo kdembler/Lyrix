@@ -14,6 +14,12 @@ let lyrixWindow: LyrixWindow
 app.whenReady().then(() => {
   app.setActivationPolicy('accessory')
 
+  const autolaunchEnabled = app.getLoginItemSettings().openAtLogin
+  const state = sharedLyrixStore.getState()
+  if (autolaunchEnabled !== state.autolaunchEnabled) {
+    state.setAutolaunchEnabled(autolaunchEnabled)
+  }
+
   lyrixWindow = new LyrixWindow()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   lyrixTray = new LyrixTray(lyrixWindow)
