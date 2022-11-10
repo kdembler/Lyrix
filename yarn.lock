@@ -800,10 +800,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.6.2":
-  version: 14.17.28
-  resolution: "@types/node@npm:14.17.28"
-  checksum: 84af4d39adb08756205ab77773dac6d796fe04c129fe554510e94f9a60c3599047a43fe499778d51a56258a14aa8afd0e8545dc658bfcaf67362e2e2028fb2fd
+"@types/node@npm:^16.11.26":
+  version: 16.18.3
+  resolution: "@types/node@npm:16.18.3"
+  checksum: 6b8ba2ea5d842f7986e366cb9184c54d273d492784dc62e08fd5afeae938d9b61aec6e4222d2541cd18f9b1412ba361bbcb3f4204fb003608af80a2a6af959f9
   languageName: node
   linkType: hard
 
@@ -2516,16 +2516,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron@npm:^15.3.0":
-  version: 15.3.0
-  resolution: "electron@npm:15.3.0"
+"electron@npm:^18.3.7":
+  version: 18.3.15
+  resolution: "electron@npm:18.3.15"
   dependencies:
     "@electron/get": ^1.13.0
-    "@types/node": ^14.6.2
+    "@types/node": ^16.11.26
     extract-zip: ^1.0.3
   bin:
     electron: cli.js
-  checksum: d317c675f50956221794c706caaefef8264b271a790841b7bf57ffe0a8434dde4bf3bbc442cb17713fb38ba4bc8345bae0bf78963c35c22dc628382d347d2ab6
+  checksum: d5ff1a31cb2da292e3f1141036640cabe66563425ebe5ce9784c1945aab1f2b1a6d1b474c23c753cd46af5937702ace343d4b6f9119934bc86e3c41d4dd9fa4a
   languageName: node
   linkType: hard
 
@@ -4549,7 +4549,7 @@ fsevents@~2.3.2:
     axios: ^0.23.0
     classnames: ^2.3.1
     concurrently: ^6.3.0
-    electron: ^15.3.0
+    electron: ^18.3.7
     electron-builder: ^22.10.5
     electron-is-dev: ^2.0.0
     electron-shared-state: ^1.0.0
