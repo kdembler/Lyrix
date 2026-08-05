@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>Lyrix</string>
+    <key>CFBundleIdentifier</key>
+    <string>dev.kdembler.lyrix</string>
+    <key>CFBundleName</key>
+    <string>Lyrix</string>
+    <key>CFBundleDisplayName</key>
+    <string>Lyrix</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>2.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+
+    <!-- Menu bar only: no Dock icon, no app switcher entry. -->
+    <key>LSUIElement</key>
+    <true/>
+
+    <!-- Required for the AppleScript cold-start snapshot. Without this key macOS kills
+         the Automation request outright instead of showing a permission prompt. -->
+    <key>NSAppleEventsUsageDescription</key>
+    <string>Lyrix reads the currently playing track from Spotify and Music so it can find its lyrics.</string>
+
+    <key>NSHumanReadableCopyright</key>
+    <string>ISC licensed</string>
+</dict>
+</plist>

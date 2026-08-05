@@ -1,0 +1,3 @@
+import LyrixCore
+
+LyrixMain.run()
