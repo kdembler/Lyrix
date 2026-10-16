@@ -1,91 +1,78 @@
 <div align="center">
   <img height="128" width="128" alt="Lyrix" src="Resources/icon.png"/>
 
-  <strong>Lyrix — a Genius link, always in your menu bar</strong>
+  <h1>Lyrix</h1>
+
+  <p><strong>One click from the song you're playing to its lyrics.</strong></p>
+
+  <p><a href="https://github.com/kdembler/Lyrix/releases/latest"><strong>Download for macOS</strong></a></p>
 </div>
 
-Click the menu bar icon and the lyrics for whatever you're playing open in your
-browser. That's the whole app.
+Lyrix sits in your menu bar and keeps track of what's playing in Spotify or Apple
+Music. Click the icon and the Genius lyrics page for that song opens in your browser.
+That's the whole app.
 
-A native macOS menu bar app for Spotify and Music. No account, no login, no polling —
-it listens for the playback notifications those apps already broadcast, finds the
-Genius page the moment the track changes, and caches it. By the time you click, the
-link is already resolved.
+- **Instant** — the lyrics link is found as soon as the track changes, so the click
+  just opens it.
+- **Honest** — if Lyrix isn't sure it found the right song, it opens a Genius search
+  instead of the wrong lyrics.
+- **Nothing to set up** — no account, no login, no API key.
+- **Light** — a small native app that sits idle until the track changes.
 
 ## Install
 
-```sh
-./Scripts/build-app.sh
-cp -r build/Lyrix.app /Applications/
-```
+1. Download the latest `Lyrix-<version>.zip` from
+   [Releases](https://github.com/kdembler/Lyrix/releases/latest).
+2. Unzip it and drag **Lyrix.app** to your Applications folder.
+3. Open it. A music-note icon appears in the menu bar.
 
-Requires macOS 14+ and Swift 6. There's no Xcode project — it's a Swift package, and
-the script assembles the `.app` around the built executable.
+Requires macOS 14 Sonoma or later. Works on Apple Silicon and Intel Macs.
 
-The script signs with the first code-signing identity it finds in your keychain:
-Developer ID Application, then Apple Development, then ad-hoc. With a real identity
-the signature stays the same across rebuilds, so macOS remembers the Automation
-permission; an ad-hoc build may ask again each time. Set `LYRIX_SIGN_IDENTITY` to
-pick one explicitly.
+The first time it starts, macOS asks whether Lyrix may control Spotify or Music. Allow
+it so Lyrix can see a song that was already playing when it launched. If you decline,
+Lyrix still works; it just picks up from the next track.
 
-To build a notarized copy for other Macs, sign with a Developer ID Application
-identity and pass a `notarytool` keychain profile:
+To start Lyrix automatically, right-click the icon and choose **Launch at Login**.
 
-```sh
-xcrun notarytool store-credentials lyrix   # once: Apple ID, team ID, app-specific password
-LYRIX_NOTARY_PROFILE=lyrix ./Scripts/build-app.sh
-```
+## Using it
 
-That staples the ticket and leaves a distributable `build/Lyrix.zip`.
-
-## Usage
-
-- **Left-click** the icon — opens the lyrics.
-- **Right-click** — current track, what it matched, copy link, search on Genius,
-  launch at login, quit.
+| | |
+|---|---|
+| **Click** the icon | Open the lyrics for the current song |
+| **Right-click** the icon | See the song and what it matched, copy the link, search Genius yourself, toggle Launch at Login, or quit |
 
 The icon is dimmed when nothing is playing.
 
-## How it works
+## Questions
 
-Spotify and Music broadcast a distributed notification on every track change,
-carrying the title, artist, album and a stable track ID. Lyrix listens for those, so
-steady-state operation costs no polling, no network and no permission prompt. A single
-AppleScript query at launch covers what's already playing — that's the only part that
-needs Automation access, and if you decline it the app simply starts working at the
-next track change.
+**It opened a Genius search instead of the lyrics.**
+Lyrix only opens a lyrics page when it's confident it's the right song. Live versions,
+remixes and songs that aren't on Genius often end up as a search. Pick the right
+result from there.
 
-Each track is scored against Genius search results before opening anything. Below the
-confidence threshold it opens a Genius *search* page rather than guessing, so it
-either takes you to the right song or admits it isn't sure.
+**It doesn't notice what I'm playing.**
+Lyrix works with the Spotify and Apple Music desktop apps, not the Spotify web player
+or other players. If it misses the song that was playing when it launched, skip to the
+next track, or allow it under System Settings → Privacy & Security → Automation.
 
-See [docs/DESIGN.md](docs/DESIGN.md) for why it works this way.
+**What does it send over the network?**
+Only the title and artist of each new track, to Genius's search, to find the lyrics
+page. Results are cached on your Mac (in `~/Library/Application Support/Lyrix`), so a
+song you've played before costs no request at all. There's no analytics or tracking.
 
-## Development
+**How do I uninstall it?**
+Quit it from the right-click menu, then delete Lyrix.app from Applications and,
+optionally, `~/Library/Application Support/Lyrix`.
 
-```sh
-swift test                                                  # unit tests, no network
-LYRIX_INTEGRATION=1 swift test --filter GeniusIntegration    # hits the real API
-```
+## Building from source
 
-`Tools/DNSpike` prints the raw playback notifications, which is the quickest way to
-debug anything track-detection related.
-
-## Credentials
-
-Ships with no API token. It uses Genius's tokenless search endpoint and falls back to
-a plain `genius.com/search?q=` URL that needs no API at all.
-
-## History
-
-The original was written in Swift, then rewritten in Electron (`v1.0.0`, preserved on
-the `old_electron` branch). This is a ground-up native rewrite; the earlier versions
-are tagged if you want them.
+See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for building, signing and releasing,
+and [docs/DESIGN.md](docs/DESIGN.md) for why Lyrix works the way it does.
 
 ## Credits
 
-Icon from [iconmonstr](https://iconmonstr.com/).
+Icon from [iconmonstr](https://iconmonstr.com/). Lyrics are hosted by
+[Genius](https://genius.com); Lyrix isn't affiliated with Genius, Spotify or Apple.
 
-## License
-
-ISC
+ISC licensed. Earlier Swift and Electron versions are kept on the `old_swift` and
+`old_electron` branches.
