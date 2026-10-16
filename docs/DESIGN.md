@@ -94,4 +94,3 @@ play should retry rather than permanently remember the failure.
 
 - Global hotkey
 - Settings window, including optional Genius API token entry
-- Developer ID signing and notarization
