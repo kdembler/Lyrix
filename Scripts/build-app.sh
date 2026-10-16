@@ -7,8 +7,10 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 APP="$ROOT/build/Lyrix.app"
 
 echo "==> building ($CONFIG)"
-swift build -c "$CONFIG" --package-path "$ROOT"
-BIN_DIR="$(swift build -c "$CONFIG" --package-path "$ROOT" --show-bin-path)"
+# Universal binary, so the release runs on Intel Macs as well as Apple Silicon.
+ARCHS=(--arch arm64 --arch x86_64)
+swift build -c "$CONFIG" --package-path "$ROOT" "${ARCHS[@]}"
+BIN_DIR="$(swift build -c "$CONFIG" --package-path "$ROOT" "${ARCHS[@]}" --show-bin-path)"
 
 echo "==> assembling bundle"
 rm -rf "$APP"
