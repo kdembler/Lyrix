@@ -22,8 +22,21 @@ cp -r build/Lyrix.app /Applications/
 Requires macOS 14+ and Swift 6. There's no Xcode project — it's a Swift package, and
 the script assembles the `.app` around the built executable.
 
-The build is ad-hoc signed, so macOS may ask for Automation permission again after
-each rebuild.
+The script signs with the first code-signing identity it finds in your keychain:
+Developer ID Application, then Apple Development, then ad-hoc. With a real identity
+the signature stays the same across rebuilds, so macOS remembers the Automation
+permission; an ad-hoc build may ask again each time. Set `LYRIX_SIGN_IDENTITY` to
+pick one explicitly.
+
+To build a notarized copy for other Macs, sign with a Developer ID Application
+identity and pass a `notarytool` keychain profile:
+
+```sh
+xcrun notarytool store-credentials lyrix   # once: Apple ID, team ID, app-specific password
+LYRIX_NOTARY_PROFILE=lyrix ./Scripts/build-app.sh
+```
+
+That staples the ticket and leaves a distributable `build/Lyrix.zip`.
 
 ## Usage
 
